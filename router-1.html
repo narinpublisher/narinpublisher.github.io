@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <script src='https://unpkg.com/react@16.3.1/umd/react.production.min.js'></script>
+    <script src='https://unpkg.com/react-dom@16.3.1/umd/react-dom.production.min.js'></script>
+    <script src='https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js'></script>
+    <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  </head>
+  <body>
+    <div id='root'></div>
+		
+    <script type='text/babel'>
+      const Link = ReactRouterDOM.Link , Route = ReactRouterDOM.Route ;
+			
+      const App = props => (
+        <ReactRouterDOM.HashRouter>
+					<section>
+					
+						<nav>
+							<ul id='menu'>
+								 <li><Link to='/'>홈화면</Link></li>
+								 <li><Link to='/branch'>가지에</Link></li>
+								 <li><Link to='/hope'>희망의 말</Link></li>
+								 <li><Link to='/eng'>새기어 놓고서</Link></li>
+							</ul>
+						</nav>
+								
+						<Route path="/" exact component={Engraving} />
+						<Route path="/branch" component={Branch} />
+						<Route path="/hope" component={Hope} />
+						<Route path="/eng" component={Eng} />
+						
+					</section>
+        </ReactRouterDOM.HashRouter>
+      );
+
+      const Engraving = props => <h1>첫페이지</h1>
+      const Branch = props =>  <h1>가지에</h1>;
+      const Hope = props =>    <h1>희망의 말</h1>;
+      const Eng = props =>    <h1>새기어 놓고서</h1>
+      ReactDOM.render(<App />, document.querySelector('#root'));
+    </script>
+		
+  </body>
+</html>
