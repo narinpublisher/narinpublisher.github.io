@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <script src='https://unpkg.com/react@16.3.1/umd/react.production.min.js'></script>
+    <script src='https://unpkg.com/react-dom@16.3.1/umd/react-dom.production.min.js'></script>
+    <script src='https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js'></script>
+    <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+		<link rel='stylesheet' href='myStyle.css'>
+  </head>
+  <body>
+    <div id='root'></div>
+		
+    <script type='text/babel'>
+		
+      const Link = ReactRouterDOM.Link, Route = ReactRouterDOM.Route;
+						
+      const App = () => (
+        <ReactRouterDOM.HashRouter>
+					<section>
+						<nav>
+							<ul id='menu'>
+								 <li><Link to= '/' onClick= { () => go(0) }>홈화면</Link></li>
+								 <li><Link to= '/branch' onClick= { () => go(1) }>가지에</Link></li>
+								 <li><Link to= '/hope'   onClick= { () => go(2) }>희망의 말</Link></li>
+								 <li><Link to= '/eng'    onClick= { () => go(3) }>새기어 놓고서</Link></li>
+							</ul>
+						</nav>
+										
+						<Route path= "/" exact component={ Home } />
+						<Route path= "/branch" component={ Branch } />
+						<Route path= "/hope" component={ Hope } />
+						<Route path= "/eng" component={ Eng } />
+					</section>
+        </ReactRouterDOM.HashRouter>
+      );
+			
+			const Home = () => <h1>첫페이지</h1>;
+			const Branch = () => <h1 className='stylesaqua'>가지에</h1>;
+			const Hope = () =>   <h1 className='styles.red'>희망의 말</h1>;
+			const Eng  = () =>   <h1 className='stylesaqua'>새기어 놓고서</h1>;		
+			
+			const go = ( i )=> {			
+				const $li = document.querySelectorAll( 'nav li' );
+				
+				for ( let i = 0; i < $li.length; i++ ) {
+						$li[i].style.border = 'none';//메뉴 테두리 삭제
+						$li[i].classList.remove ( 'act' ); //클래스삭제
+				}
+			
+				const bgColor = ['transparent', 'gold', "yellowgreen", "pink"];
+				$li[i].style.border='2px dashed dodgerblue';  //클릭 이동된 페이지의 메뉴 테두리 디자인
+				$li[i].classList.add('act');  //클릭한 li에 클래스 추가
+				document.body.style.backgroundColor= bgColor[i]; //클릭 이동된 페이지의 배경색 설정
+			}
+
+      ReactDOM.render(<App />, document.querySelector('#root'));
+    </script>
+  </body>
+</html>
