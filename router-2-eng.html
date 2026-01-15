@@ -53,7 +53,7 @@
             <ul id="menu">
               {['Home', 'Branch', 'Words of Hope', 'Engraving'].map((text, i) => (
                 <li key={i} className={i === activeIndex ? 'act' : ''}>
-                  <Link to={i===0?'/' : i===1?'/branch' : i===2?'/hope':'/eng'} onClick={() => go(i)}>
+                  <Link to={i===0?'/' : i===1?'#/branch' : i===2?'#/hope':'#/eng'} onClick={() => go(i)}>
                     {text}
                   </Link>
                 </li>
